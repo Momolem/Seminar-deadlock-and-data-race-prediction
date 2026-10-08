@@ -1,0 +1,20 @@
+{
+	"name": "Go",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+	"mounts": [
+		"source=opencode-config,target=/home/vscode/.config/opencode,type=volume",
+		"source=opencode-data,target=/home/vscode/.local/share/opencode,type=volume",
+		"source=opencode-state,target=/home/vscode/.local/state/opencode,type=volume"
+	],
+	"postCreateCommand": "cd chronos && go1.15 install ./cmd/chronos",
+	"remoteEnv": {
+		"GOROOT": "/home/vscode/sdk/go1.15",
+		"PATH": "/home/vscode/sdk/go1.15/bin:${containerEnv:PATH}"
+	},
+
+	"remoteUser": "vscode",
+	"containerUser": "vscode"
+}
