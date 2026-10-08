@@ -12,7 +12,7 @@ RUN mkdir -p /run/user/1000 \
 
 USER vscode
 
-# Install Go 1.18
+# Install Go 1.15
 RUN go install golang.org/dl/go1.15@latest
 RUN go1.15 download
 
@@ -35,3 +35,4 @@ WORKDIR /tmp/chronos
 COPY --chown=vscode:vscode chronos/go.mod chronos/go.sum ./
 
 RUN go1.15 mod download
+RUN GO111MODULE=on go get golang.org/x/tools/gopls@v0.9.5
